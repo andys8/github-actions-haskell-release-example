@@ -4,7 +4,10 @@ on: [push]
 
 jobs:
   build-linux:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v1
@@ -12,7 +15,9 @@ jobs:
         name: Cache ~/.stack
         with:
           path: ~/.stack
-          key: ${{ runner.os }}-stack
+          key: ${{ matrix.os }}-stack
+      - if:  matrix.os  == 'macos-latest'
+        run: brew install haskell-stack
       - name: Build
         run: stack build --fast
       - name: Run tests

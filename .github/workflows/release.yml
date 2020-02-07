@@ -44,7 +44,7 @@ jobs:
         name: Cache ~/.stack
         with:
           path: ~/.stack
-          key: ${{ runner.os }}-stack
+          key: ${{ matrix.os }}-stack
       - if:  matrix.os  == 'macos-latest'
         run: brew install haskell-stack
       - name: Build binary
@@ -66,5 +66,5 @@ jobs:
         with:
           upload_url: ${{ steps.get_release_info.outputs.upload_url }}
           asset_path: ./dist/github-actions-haskell-release-example-exe
-          asset_name: github-actions-haskell-release-example-exe-${{ runner.os }}
+          asset_name: github-actions-haskell-release-example-exe-${{ matrix.os }}
           asset_content_type: application/octet-stream
