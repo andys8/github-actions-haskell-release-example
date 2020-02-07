@@ -38,8 +38,6 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
-    env:
-      KERNEL: $(uname | tr '[:upper:]' '[:lower:]')
     steps:
       - name: Check out code
         uses: actions/checkout@v1
@@ -64,5 +62,5 @@ jobs:
         with:
           upload_url: ${{ steps.get_release_info.outputs.upload_url }}
           asset_path: ./dist/github-actions-haskell-release-example-exe
-          asset_name: binary-$KERNEL-amd64
+          asset_name: binary-${{ runner.os }}-amd64
           asset_content_type: application/octet-stream
