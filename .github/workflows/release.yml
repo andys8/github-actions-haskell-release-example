@@ -14,8 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@master
       - name: Build project # This would actually build your project, using zip for an example artifact
-        run: stack build
-          zip --junk-paths my-artifact README.md
+        run: zip --junk-paths my-artifact README.md
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1.0.0
