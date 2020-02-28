@@ -53,9 +53,16 @@ jobs:
         with:
           name: release_url
       - name: Get Release File Name & Upload URL
+        if: matrix.os  != 'windows-latest'
         id: get_release_info
         run: |
           value=`cat release_url/release_url.txt`
+          echo ::set-output name=upload_url::$value
+      - name: Get Release File Name & Upload URL
+        if: matrix.os  == 'windows-latest'
+        id: get_release_info
+        run: |
+          value=`type release_url/release_url.txt`
           echo ::set-output name=upload_url::$value
       - name: Upload Release Asset
         id: upload-release-asset
