@@ -47,7 +47,7 @@ jobs:
           key: ${{ matrix.os }}-stack
       - uses: mstksg/setup-stack@v2
       - name: Build binary
-        run: stack install --local-bin-path ''
+        run: stack install --local-bin-path .
       - name: Load Release URL File from release job
         uses: actions/download-artifact@v1
         with:
