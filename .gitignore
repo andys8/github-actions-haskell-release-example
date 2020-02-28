@@ -1,5 +1,6 @@
 .stack-work/
 github-actions-haskell-release-example.cabal
+github-actions-haskell-release-example-exe
 *~
 # Created by https://www.gitignore.io/api/haskell
 # Edit at https://www.gitignore.io/?templates=haskell
